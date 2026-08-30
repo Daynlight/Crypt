@@ -11,6 +11,9 @@ option(CRYPT_BUILD_EXAMPLE "Build example" ON)
 option(CRYPT_BUILD_TESTS "Build tests" ON)
 
 
+set(CRYPT_VCPKG_INSTALLED_DIR "${CMAKE_SOURCE_DIR}/vendor/x64-linux")
+list(APPEND CMAKE_PREFIX_PATH "${CRYPT_VCPKG_INSTALLED_DIR}")
+
 
 add_subdirectory(Crypt)
 
