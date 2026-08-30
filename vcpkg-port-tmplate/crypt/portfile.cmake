@@ -1,0 +1,17 @@
+vcpkg_from_github(
+  OUT_SOURCE_PATH SOURCE_PATH
+  REPO Daynlight/Crypt
+
+  REF 3096f4d874331bef38963926081cb93a42fd2563
+  SHA512 "69587f7bad9ca5173729f67a5e9b0f7e38b847c1dc6aed9980935a1f85102e5f029b1dce9035cb98896d09036968ca0bd10a8e794189fb5cde807a55276f68db"
+  HEAD_REF main
+)
+
+vcpkg_cmake_configure(
+  SOURCE_PATH "${SOURCE_PATH}"
+  OPTIONS
+    -DCRYPT_BUILD_EXAMPLE=OFF
+    -DCRYPT_BUILD_TESTS=OFF
+)
+
+vcpkg_cmake_install()

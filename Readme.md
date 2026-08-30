@@ -1,6 +1,6 @@
 # Crypt 
 ## About
-Crypt is set of structures and algorithms used in **Cryptography** written in ```C++```. ```Supports Key exchange```, ```Hashing```, ```Encrypting and Decrypting Data```, ```Data Validation```.
+Crypt is a set of structures and algorithms used in **Cryptography** written in ```C++```. ```Supports Key exchange```, ```Hashing```, ```Encrypting and Decrypting Data```, ```Data Validation```.
 
 
 
@@ -8,7 +8,7 @@ Crypt is set of structures and algorithms used in **Cryptography** written in ``
 - [About](#about)
 - [Table of Contents](#table-of-contents)
 - [Installation](#installation)
-  - [Via Github Repo](#via-github-repo)
+  - [Via GitHub Repo](#via-github-repo)
   - [Via vcpkg](#via-vcpkg)
 - [Usage](#usage)
 - [Configurations Flags](#configurations-flags)
@@ -19,15 +19,69 @@ Crypt is set of structures and algorithms used in **Cryptography** written in ``
 
 
 ## Installation
-### Via Github Repo
+### Via GitHub Repo
 #### 1.1 Clone Repo
 ```bash
   git clone https://github.com/Daynlight/Crypt
 ```
 #### 1.2 Download from tag
-[Latests](https://github.com/Daynlight/Crypt/releases)
+[Latest releases](https://github.com/Daynlight/Crypt/releases)
+#### 2. Add it and link in cmake
+```cmake
+cmake_minimum_required(VERSION 3.15)
+
+
+project(A LANGUAGES CXX)
+
+add_subdirectory(<Path_to_crypt>)
+
+set(src 
+  main.cpp
+)
+
+add_executable(A ${src})
+target_link_libraries(A PRIVATE Crypt::Crypt)
+```
+
 
 ### Via vcpkg
+#### 1. Create ```vcpkg-configuration.json```
+```json
+{
+  "overlay-ports": [
+    "./.ports"
+  ]
+}
+```
+#### 2. Copy ports
+Copy [```crypt```](vcpkg-port-tmplate/crypt/) folder to your ports.
+Should be something like ```.ports/crypt/vcpkg.json``` and ```.ports/crypt/portfile.cmake```.
+#### 3. Add ```crypt to your root ```vcpkg.json```
+```json
+{
+  "name": "test",
+  "version": "1.0.0",
+  "dependencies": [
+    "crypt"
+  ]
+}
+```
+#### 4. Link it in cmake
+```cmake
+cmake_minimum_required(VERSION 3.15)
+
+
+project(A LANGUAGES CXX)
+
+find_package(Crypt CONFIG REQUIRED)
+
+set(src 
+  main.cpp
+)
+
+add_executable(A ${src})
+target_link_libraries(A PRIVATE Crypt::Crypt)
+```
 
 
 
