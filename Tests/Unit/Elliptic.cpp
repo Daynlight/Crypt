@@ -13,7 +13,7 @@
 #define private public
 #define protected public
 
-#include "Elliptic/Elliptic.h"
+#include <Crypt/Elliptic/Elliptic.h>
 
 #undef private
 #undef protected

@@ -18,7 +18,7 @@ add_executable(unit_tests ${tests_src})
 
 
 target_link_libraries(unit_tests PRIVATE 
-  Crypt
+  Crypt::Crypt
   GTest::gtest
   GTest::gtest_main
   GTest::gmock_main

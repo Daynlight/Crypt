@@ -16,4 +16,7 @@ set(src
 )
 
 add_executable(CryptExamples ${src})
-target_link_libraries(CryptExamples PUBLIC Crypt fmt::fmt)
+target_link_libraries(CryptExamples PUBLIC 
+  Crypt::Crypt 
+  fmt::fmt
+)
