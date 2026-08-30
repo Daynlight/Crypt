@@ -66,7 +66,10 @@ Should be something like ```.ports/crypt/vcpkg.json``` and ```.ports/crypt/portf
   ]
 }
 ```
-#### 4. Link it in cmake
+#### 4. Update ```portfile.cmake```
+- REF to commit hash you want to use
+- SHA512 generated after first run
+#### 5. Link it in cmake
 ```cmake
 cmake_minimum_required(VERSION 3.15)
 
@@ -99,6 +102,7 @@ target_link_libraries(A PRIVATE Crypt::Crypt)
 
 ## Supported Structures and Algorithms
 - [Elliptic Curves](docs/Elliptic.md)
+- [Des](docs/Des.md)
 
 
 

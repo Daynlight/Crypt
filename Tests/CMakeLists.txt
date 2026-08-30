@@ -12,6 +12,7 @@ find_package(GTest CONFIG REQUIRED)
 
 set(tests_src
   Unit/Elliptic.cpp
+  Unit/Des.cpp
 )
 
 add_executable(unit_tests ${tests_src})
