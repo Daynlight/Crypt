@@ -6,10 +6,12 @@
 
 
 #include "EllipticExample.h"
+#include "DesExample.h"
 
 
 int main(){
   EllipticExample();
+  DesExample();
   
   return 0;
 };
