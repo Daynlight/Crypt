@@ -38,18 +38,48 @@ endif()
 ###################
 ##### Install ##### 
 ###################
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
+
 install(
   TARGETS Crypt
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-  RUNTIME DESTINATION bin
+  EXPORT CryptTargets
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
 install(
   DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Crypt/"
-  DESTINATION include/Crypt
+  DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/Crypt"
   FILES_MATCHING
     PATTERN "*.h"
     PATTERN "*.hpp"
     PATTERN "*.inl"
+)
+
+install(
+  EXPORT CryptTargets
+  FILE CryptTargets.cmake
+  NAMESPACE Crypt::
+  DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/Crypt"
+)
+
+configure_package_config_file(
+  "${CMAKE_CURRENT_SOURCE_DIR}/cmake/CryptConfig.cmake.in"
+  "${CMAKE_CURRENT_BINARY_DIR}/CryptConfig.cmake"
+  INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/Crypt"
+)
+
+write_basic_package_version_file(
+  "${CMAKE_CURRENT_BINARY_DIR}/CryptConfigVersion.cmake"
+  VERSION 1.0.0
+  COMPATIBILITY SameMajorVersion
+)
+
+install(
+  FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/CryptConfig.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/CryptConfigVersion.cmake"
+  DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/Crypt"
 )

@@ -19,4 +19,12 @@ set(headers
 )
 
 add_library(Crypt ${src})
-target_include_directories(Crypt PUBLIC ${headers})
+
+add_library(Crypt::Crypt ALIAS Crypt)
+
+target_include_directories(
+  Crypt
+  PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
+    $<INSTALL_INTERFACE:include>
+)
