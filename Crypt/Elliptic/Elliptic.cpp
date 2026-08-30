@@ -13,7 +13,7 @@
 //// ====== Constructors ====== ////
 //// ========================== ////
 // core
-Elliptic::Elliptic() noexcept {
+Crypt::Elliptic::Elliptic() noexcept {
   check_modulo_is_prime();
   check_elliptic_curve_is_valid();
   check_point_is_valid();
@@ -21,7 +21,7 @@ Elliptic::Elliptic() noexcept {
 
 
 
-Elliptic::Elliptic(size_t modulo, size_t a, size_t b) noexcept
+Crypt::Elliptic::Elliptic(size_t modulo, size_t a, size_t b) noexcept
   :modulo(modulo), a(a), b(b) {
   check_modulo_is_prime();
   check_elliptic_curve_is_valid();
@@ -30,7 +30,7 @@ Elliptic::Elliptic(size_t modulo, size_t a, size_t b) noexcept
 
 
 
-Elliptic::Elliptic(size_t modulo, size_t a, size_t b, size_t x, size_t y) noexcept
+Crypt::Elliptic::Elliptic(size_t modulo, size_t a, size_t b, size_t x, size_t y) noexcept
   :modulo(modulo), a(a), b(b), x(x), y(y) {
   check_modulo_is_prime();
   check_elliptic_curve_is_valid();
@@ -39,12 +39,12 @@ Elliptic::Elliptic(size_t modulo, size_t a, size_t b, size_t x, size_t y) noexce
 
 
 
-Elliptic::~Elliptic() noexcept {};
+Crypt::Elliptic::~Elliptic() noexcept {};
 
 
 
 // copy
-Elliptic::Elliptic(const Elliptic &second) noexcept
+Crypt::Elliptic::Elliptic(const Elliptic &second) noexcept
   :modulo(second.modulo), 
   a(second.a), b(second.b), x(second.x), y(second.y), 
   modulo_is_prime(second.modulo_is_prime),
@@ -53,7 +53,7 @@ Elliptic::Elliptic(const Elliptic &second) noexcept
 
 
 
-Elliptic& Elliptic::operator=(const Elliptic& second) noexcept {
+Crypt::Elliptic& Crypt::Elliptic::operator=(const Elliptic& second) noexcept {
   if(this == &second) return *this;
   
   x = second.x;
@@ -71,7 +71,7 @@ Elliptic& Elliptic::operator=(const Elliptic& second) noexcept {
 
 
 // move
-Elliptic::Elliptic(Elliptic &&second) noexcept
+Crypt::Elliptic::Elliptic(Elliptic &&second) noexcept
   :modulo(std::move(second.modulo)), 
   a(std::move(second.a)), b(std::move(second.b)), 
   x(std::move(second.x)), y(std::move(second.y)),
@@ -81,7 +81,7 @@ Elliptic::Elliptic(Elliptic &&second) noexcept
 
 
 
-Elliptic& Elliptic::operator=(Elliptic&& second) noexcept {
+Crypt::Elliptic& Crypt::Elliptic::operator=(Elliptic&& second) noexcept {
   if(this == &second) return *this;
 
   x = std::move(second.x);
@@ -101,26 +101,26 @@ Elliptic& Elliptic::operator=(Elliptic&& second) noexcept {
 //// ============================= ////
 //// ====== Getters/Setters ====== ////
 //// ============================= ////
-size_t Elliptic::getModulo() const noexcept {
+size_t Crypt::Elliptic::getModulo() const noexcept {
   return modulo;
 };
 
 
 
-void Elliptic::setModulo(size_t modulo) noexcept {
+void Crypt::Elliptic::setModulo(size_t modulo) noexcept {
   this->modulo = modulo;
   check_modulo_is_prime();
 };
 
 
 
-std::array<size_t, 2> Elliptic::getEllipticParams() const noexcept {
+std::array<size_t, 2> Crypt::Elliptic::getEllipticParams() const noexcept {
   return {a, b};
 };
 
 
 
-void Elliptic::setEllipticParams(size_t a, size_t b) noexcept {
+void Crypt::Elliptic::setEllipticParams(size_t a, size_t b) noexcept {
   this->a = a;
   this->b = b;
   check_elliptic_curve_is_valid();
@@ -128,7 +128,7 @@ void Elliptic::setEllipticParams(size_t a, size_t b) noexcept {
 
 
 
-void Elliptic::setEllipticParams(std::array<size_t, 2> params) noexcept {
+void Crypt::Elliptic::setEllipticParams(std::array<size_t, 2> params) noexcept {
   this->a = params[0];
   this->b = params[1];
   check_elliptic_curve_is_valid();
@@ -136,13 +136,13 @@ void Elliptic::setEllipticParams(std::array<size_t, 2> params) noexcept {
 
 
 
-std::array<size_t, 2> Elliptic::getPoint() const noexcept {
+std::array<size_t, 2> Crypt::Elliptic::getPoint() const noexcept {
   return {x, y};
 };
 
 
 
-void Elliptic::setPoint(size_t x, size_t y) noexcept {
+void Crypt::Elliptic::setPoint(size_t x, size_t y) noexcept {
   this->x = x;
   this->y = y;
   check_point_is_valid();
@@ -150,7 +150,7 @@ void Elliptic::setPoint(size_t x, size_t y) noexcept {
 
 
 
-void Elliptic::setPoint(std::array<size_t, 2> point) noexcept {
+void Crypt::Elliptic::setPoint(std::array<size_t, 2> point) noexcept {
   this->x = point[0];
   this->y = point[1];
   check_point_is_valid();
@@ -158,19 +158,19 @@ void Elliptic::setPoint(std::array<size_t, 2> point) noexcept {
 
 
 
-bool Elliptic::moduloIsPrime() const noexcept {
+bool Crypt::Elliptic::moduloIsPrime() const noexcept {
   return modulo_is_prime;
 };
 
 
 
-bool Elliptic::ellipticCurveIsValid() const noexcept {
+bool Crypt::Elliptic::ellipticCurveIsValid() const noexcept {
   return elliptic_curve_is_valid;
 };
 
 
 
-bool Elliptic::pointIsValid() const noexcept {
+bool Crypt::Elliptic::pointIsValid() const noexcept {
   return point_is_valid;
 };
 
@@ -179,7 +179,7 @@ bool Elliptic::pointIsValid() const noexcept {
 //// ======================== ////
 //// ====== Arithmetic ====== ////
 //// ======================== ////
-Elliptic Elliptic::add(const Elliptic& second){
+Crypt::Elliptic Crypt::Elliptic::add(const Elliptic& second){
   if(!modulo_is_prime) throw std::logic_error("add(), Modulo is not Prime");
   if(!elliptic_curve_is_valid) throw std::logic_error("add(), Elliptic curve is not valid");
   if(!point_is_valid) throw std::logic_error("add(), Point is not valid");
@@ -203,7 +203,7 @@ Elliptic Elliptic::add(const Elliptic& second){
 
 
 
-Elliptic Elliptic::minus(const Elliptic& second){
+Crypt::Elliptic Crypt::Elliptic::minus(const Elliptic& second){
   Elliptic second_inverse = second.inverse();
 
   return add(second_inverse);
@@ -211,7 +211,7 @@ Elliptic Elliptic::minus(const Elliptic& second){
 
 
 
-Elliptic Elliptic::mult(size_t multiplier){
+Crypt::Elliptic Crypt::Elliptic::mult(size_t multiplier){
   Elliptic result = *this;
   for(int i = 1; i < multiplier; i++) result = result.add(*this);
   result.check_point_is_valid();
@@ -220,7 +220,7 @@ Elliptic Elliptic::mult(size_t multiplier){
 
 
 
-Elliptic Elliptic::inverse() const {
+Crypt::Elliptic Crypt::Elliptic::inverse() const {
   Elliptic result = *this;
   if (result.y != 0) result.y = modulo - result.y;
   return result;
@@ -228,39 +228,39 @@ Elliptic Elliptic::inverse() const {
 
 
 
-Elliptic Elliptic::operator+(const Elliptic& second){
+Crypt::Elliptic Crypt::Elliptic::operator+(const Elliptic& second){
   return add(second);
 };
 
 
 
-Elliptic& Elliptic::operator+=(const Elliptic& second){
+Crypt::Elliptic& Crypt::Elliptic::operator+=(const Elliptic& second){
   *this = add(second);
   return *this;
 };
 
 
 
-Elliptic Elliptic::operator-(const Elliptic& second){
+Crypt::Elliptic Crypt::Elliptic::operator-(const Elliptic& second){
   return minus(second);
 };
 
 
 
-Elliptic& Elliptic::operator-=(const Elliptic& second){
+Crypt::Elliptic& Crypt::Elliptic::operator-=(const Elliptic& second){
   *this = minus(second);
   return *this;
 };
 
 
 
-Elliptic Elliptic::operator*(size_t multiplier){
+Crypt::Elliptic Crypt::Elliptic::operator*(size_t multiplier){
   return mult(multiplier);
 };
 
 
 
-Elliptic& Elliptic::operator*=(size_t multiplier){
+Crypt::Elliptic& Crypt::Elliptic::operator*=(size_t multiplier){
   *this = mult(multiplier);
   return *this;
 };
@@ -270,7 +270,7 @@ Elliptic& Elliptic::operator*=(size_t multiplier){
 //// =================== ////
 //// ====== Logic ====== ////
 //// =================== ////
-bool Elliptic::operator==(const Elliptic& second) const noexcept {
+bool Crypt::Elliptic::operator==(const Elliptic& second) const noexcept {
   if(modulo != second.modulo) return false;
   if(a != second.a) return false;
   if(b != second.b) return false;
@@ -282,7 +282,7 @@ bool Elliptic::operator==(const Elliptic& second) const noexcept {
 
 
 
-bool Elliptic::operator!=(const Elliptic& second) const noexcept {
+bool Crypt::Elliptic::operator!=(const Elliptic& second) const noexcept {
   return !(*this == second);
 };
 
@@ -291,21 +291,21 @@ bool Elliptic::operator!=(const Elliptic& second) const noexcept {
 //// ===================== ////
 //// ====== Helpers ====== ////
 //// ===================== ////
-bool Elliptic::check_point_is_valid() noexcept {
+bool Crypt::Elliptic::check_point_is_valid() noexcept {
   point_is_valid = ((y*y) % modulo) == (x*x*x + a*x + b) % modulo;
   return point_is_valid;
 };
 
 
 
-bool Elliptic::check_elliptic_curve_is_valid() noexcept {
+bool Crypt::Elliptic::check_elliptic_curve_is_valid() noexcept {
   elliptic_curve_is_valid = (4*a*a*a + 27*b*b) % modulo != 0;
   return elliptic_curve_is_valid;
 };
 
 
 
-bool Elliptic::check_modulo_is_prime() {
+bool Crypt::Elliptic::check_modulo_is_prime() {
   if(modulo == 2 || modulo == 3) {
     modulo_is_prime = true;
     return modulo_is_prime;
@@ -340,7 +340,7 @@ bool Elliptic::check_modulo_is_prime() {
 
 
 
-size_t Elliptic::calculate_lambda(const Elliptic& second){
+size_t Crypt::Elliptic::calculate_lambda(const Elliptic& second){
   size_t lambda_top = 0;
   size_t lambda_bot = 0;
 
@@ -363,7 +363,7 @@ size_t Elliptic::calculate_lambda(const Elliptic& second){
 
 
 
-size_t Elliptic::calculate_inv(size_t val){
+size_t Crypt::Elliptic::calculate_inv(size_t val){
   size_t lam_bot_inv = 1;
   for(int i = 0; i < modulo - 2; i ++){
     lam_bot_inv *= val;
@@ -378,13 +378,13 @@ size_t Elliptic::calculate_inv(size_t val){
 //// =================== ////
 //// ====== Print ====== ////
 //// =================== ////
-std::string& Elliptic::str(){
+std::string& Crypt::Elliptic::str(){
   str_print = "Elliptic(modulo = "+ std::to_string(modulo) +", a = "+ std::to_string(a) +", b = "+ std::to_string(b) +", x = "+ std::to_string(x) +", y = "+ std::to_string(y) +")";
   return str_print;
 };
 
 
 
-const char* Elliptic::c_str(){
+const char* Crypt::Elliptic::c_str(){
   return str().c_str();
 };

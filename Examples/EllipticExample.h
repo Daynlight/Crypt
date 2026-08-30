@@ -10,7 +10,7 @@
 
 #include <string>
 
-#include "Elliptic.h"
+#include "Elliptic/Elliptic.h"
 
 
 
@@ -21,19 +21,19 @@ void EllipticExample(){
   fmt::println("");
 
   {
-    Elliptic elliptic(17, 2, 2, 5, 1);
+    Crypt::Elliptic elliptic(17, 2, 2, 5, 1);
     elliptic = elliptic + elliptic;  
     fmt::println(fg(fmt::color::yellow), "{}", elliptic.c_str());
   }
 
   {
-    Elliptic elliptic(17, 2, 2, 5, 1);
+    Crypt::Elliptic elliptic(17, 2, 2, 5, 1);
     elliptic = elliptic.mult(2); 
     fmt::println(fg(fmt::color::yellow), "{}", elliptic.c_str());
   }
   
   {
-    Elliptic elliptic(17, 2, 2, 5, 1);
+    Crypt::Elliptic elliptic(17, 2, 2, 5, 1);
     elliptic *= 2; 
     fmt::println(fg(fmt::color::yellow), "{}", elliptic.c_str());
   }
@@ -42,11 +42,11 @@ void EllipticExample(){
   fmt::println(fg(fmt::color::aqua), "Key Exchange on Elliptic");
   fmt::println("");
   {
-    Elliptic elliptic1(17, 2, 2, 5, 1);
+    Crypt::Elliptic elliptic1(17, 2, 2, 5, 1);
     elliptic1 *= 2; 
     fmt::println(fg(fmt::color::purple), "{}", elliptic1.c_str());
 
-    Elliptic elliptic2(17, 2, 2, 5, 1);
+    Crypt::Elliptic elliptic2(17, 2, 2, 5, 1);
     elliptic2 *= 3; 
     fmt::println(fg(fmt::color::pink), "{}", elliptic2.c_str());
 

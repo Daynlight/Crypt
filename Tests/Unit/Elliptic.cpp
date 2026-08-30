@@ -13,7 +13,7 @@
 #define private public
 #define protected public
 
-#include "Elliptic.h"
+#include "Elliptic/Elliptic.h"
 
 #undef private
 #undef protected
@@ -22,7 +22,7 @@
 
 TEST(EllipticOperationsExchange, HandlesInitialization){
   {
-    Elliptic elliptic(17, 2, 2, 5, 1);
+    Crypt::Elliptic elliptic(17, 2, 2, 5, 1);
     elliptic = elliptic + elliptic;
     std::array<size_t, 2> point = elliptic.getPoint();
     EXPECT_EQ(point[0], 6);
@@ -30,7 +30,7 @@ TEST(EllipticOperationsExchange, HandlesInitialization){
   }
 
   {
-    Elliptic elliptic(17, 2, 2, 5, 1);
+    Crypt::Elliptic elliptic(17, 2, 2, 5, 1);
     elliptic = elliptic.mult(2); 
     std::array<size_t, 2> point = elliptic.getPoint();
     EXPECT_EQ(point[0], 6);
@@ -38,7 +38,7 @@ TEST(EllipticOperationsExchange, HandlesInitialization){
   }
   
   {
-    Elliptic elliptic(17, 2, 2, 5, 1);
+    Crypt::Elliptic elliptic(17, 2, 2, 5, 1);
     elliptic *= 2; 
     std::array<size_t, 2> point = elliptic.getPoint();
     EXPECT_EQ(point[0], 6);
@@ -46,12 +46,11 @@ TEST(EllipticOperationsExchange, HandlesInitialization){
   }
 };
 
-
 TEST(EllipticKeyExchange, HandlesInitialization){
-  Elliptic elliptic1(17, 2, 2, 5, 1);
+  Crypt::Elliptic elliptic1(17, 2, 2, 5, 1);
   elliptic1 *= 2;
 
-  Elliptic elliptic2(17, 2, 2, 5, 1);
+  Crypt::Elliptic elliptic2(17, 2, 2, 5, 1);
   elliptic2 *= 3;
 
   EXPECT_TRUE(elliptic1 != elliptic2) << "elliptic should be different";

@@ -10,11 +10,11 @@ cmake_minimum_required(VERSION 3.15)
 project(Crypt LANGUAGES CXX)
 
 set(src
-  Elliptic.cpp
+  Elliptic/Elliptic.cpp
 )
 
 set(headers
-  Elliptic.h
+  Elliptic/Elliptic.h
   .
 )
 

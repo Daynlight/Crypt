@@ -13,6 +13,7 @@
 
 
 
+namespace Crypt{
 class Elliptic{
 //// ================================== ////
 //// ============== Data ============== ////
@@ -104,4 +105,5 @@ private:
 public:
   std::string& str();
   const char* c_str();
+};
 };
