@@ -7,16 +7,46 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-project(Crypt LANGUAGES CXX)
+option(CRYPT_BUILD_EXAMPLE "Build example" ON)
+option(CRYPT_BUILD_TESTS "Build tests" ON)
 
-set(src
-  main.cpp
-  Elliptic.cpp
+
+
+add_subdirectory(Crypt)
+
+
+####################
+##### Examples #####
+####################
+if(CRYPT_BUILD_EXAMPLE)
+  add_subdirectory(Examples)
+endif()
+
+
+#################
+##### Tests #####
+#################
+if(CRYPT_BUILD_TESTS)
+  enable_testing()
+  add_subdirectory(Tests)
+endif()
+
+
+###################
+##### Install ##### 
+###################
+install(
+  TARGETS Crypt
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
 )
 
-set(headers
-  Elliptic.h
+install(
+  DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Crypt/"
+  DESTINATION include/Crypt
+  FILES_MATCHING
+    PATTERN "*.h"
+    PATTERN "*.hpp"
+    PATTERN "*.inl"
 )
-
-add_executable(Crypt ${src})
-target_include_directories(Crypt PUBLIC ${headers})

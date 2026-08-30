@@ -54,17 +54,17 @@ public:
 //// ============================= ////
 //// ====== Getters/Setters ====== ////
 //// ============================= ////
-  constexpr size_t getModulo() const noexcept;
+  size_t getModulo() const noexcept;
   void setModulo(size_t modulo) noexcept;
-  constexpr std::array<size_t, 2> getEllipticParams() const noexcept;
-  constexpr void setEllipticParams(size_t a, size_t b) noexcept;
-  constexpr void setEllipticParams(std::array<size_t, 2> params) noexcept;
-  constexpr std::array<size_t, 2> getPoint() const noexcept;
-  constexpr void setPoint(size_t x, size_t y) noexcept;
-  constexpr void setPoint(std::array<size_t, 2> point) noexcept;
-  constexpr bool moduloIsPrime() const noexcept;
-  constexpr bool ellipticCurveIsValid() const noexcept;
-  constexpr bool pointIsValid() const noexcept;
+  std::array<size_t, 2> getEllipticParams() const noexcept;
+  void setEllipticParams(size_t a, size_t b) noexcept;
+  void setEllipticParams(std::array<size_t, 2> params) noexcept;
+  std::array<size_t, 2> getPoint() const noexcept;
+  void setPoint(size_t x, size_t y) noexcept;
+  void setPoint(std::array<size_t, 2> point) noexcept;
+  bool moduloIsPrime() const noexcept;
+  bool ellipticCurveIsValid() const noexcept;
+  bool pointIsValid() const noexcept;
   
 //// ======================== ////
 //// ====== Arithmetic ====== ////
@@ -92,11 +92,11 @@ public:
 //// ====== Helpers ====== ////
 //// ===================== ////
 private:
-  constexpr bool check_point_is_valid() noexcept;
-  constexpr bool check_elliptic_curve_is_valid() noexcept;
+  bool check_point_is_valid() noexcept;
+  bool check_elliptic_curve_is_valid() noexcept;
   bool check_modulo_is_prime();
-  constexpr size_t calculate_lambda(const Elliptic& second);
-  constexpr size_t calculate_inv(size_t val);
+  size_t calculate_lambda(const Elliptic& second);
+  size_t calculate_inv(size_t val);
 
 //// =================== ////
 //// ====== Print ====== ////

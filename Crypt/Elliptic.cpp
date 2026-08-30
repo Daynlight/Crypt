@@ -101,7 +101,7 @@ Elliptic& Elliptic::operator=(Elliptic&& second) noexcept {
 //// ============================= ////
 //// ====== Getters/Setters ====== ////
 //// ============================= ////
-constexpr size_t Elliptic::getModulo() const noexcept {
+size_t Elliptic::getModulo() const noexcept {
   return modulo;
 };
 
@@ -114,13 +114,13 @@ void Elliptic::setModulo(size_t modulo) noexcept {
 
 
 
-constexpr std::array<size_t, 2> Elliptic::getEllipticParams() const noexcept {
+std::array<size_t, 2> Elliptic::getEllipticParams() const noexcept {
   return {a, b};
 };
 
 
 
-constexpr void Elliptic::setEllipticParams(size_t a, size_t b) noexcept {
+void Elliptic::setEllipticParams(size_t a, size_t b) noexcept {
   this->a = a;
   this->b = b;
   check_elliptic_curve_is_valid();
@@ -128,7 +128,7 @@ constexpr void Elliptic::setEllipticParams(size_t a, size_t b) noexcept {
 
 
 
-constexpr void Elliptic::setEllipticParams(std::array<size_t, 2> params) noexcept {
+void Elliptic::setEllipticParams(std::array<size_t, 2> params) noexcept {
   this->a = params[0];
   this->b = params[1];
   check_elliptic_curve_is_valid();
@@ -136,13 +136,13 @@ constexpr void Elliptic::setEllipticParams(std::array<size_t, 2> params) noexcep
 
 
 
-constexpr std::array<size_t, 2> Elliptic::getPoint() const noexcept {
+std::array<size_t, 2> Elliptic::getPoint() const noexcept {
   return {x, y};
 };
 
 
 
-constexpr void Elliptic::setPoint(size_t x, size_t y) noexcept {
+void Elliptic::setPoint(size_t x, size_t y) noexcept {
   this->x = x;
   this->y = y;
   check_point_is_valid();
@@ -150,7 +150,7 @@ constexpr void Elliptic::setPoint(size_t x, size_t y) noexcept {
 
 
 
-constexpr void Elliptic::setPoint(std::array<size_t, 2> point) noexcept {
+void Elliptic::setPoint(std::array<size_t, 2> point) noexcept {
   this->x = point[0];
   this->y = point[1];
   check_point_is_valid();
@@ -158,19 +158,19 @@ constexpr void Elliptic::setPoint(std::array<size_t, 2> point) noexcept {
 
 
 
-constexpr bool Elliptic::moduloIsPrime() const noexcept {
+bool Elliptic::moduloIsPrime() const noexcept {
   return modulo_is_prime;
 };
 
 
 
-constexpr bool Elliptic::ellipticCurveIsValid() const noexcept {
+bool Elliptic::ellipticCurveIsValid() const noexcept {
   return elliptic_curve_is_valid;
 };
 
 
 
-constexpr bool Elliptic::pointIsValid() const noexcept {
+bool Elliptic::pointIsValid() const noexcept {
   return point_is_valid;
 };
 
@@ -291,14 +291,14 @@ bool Elliptic::operator!=(const Elliptic& second) const noexcept {
 //// ===================== ////
 //// ====== Helpers ====== ////
 //// ===================== ////
-constexpr bool Elliptic::check_point_is_valid() noexcept {
+bool Elliptic::check_point_is_valid() noexcept {
   point_is_valid = ((y*y) % modulo) == (x*x*x + a*x + b) % modulo;
   return point_is_valid;
 };
 
 
 
-constexpr bool Elliptic::check_elliptic_curve_is_valid() noexcept {
+bool Elliptic::check_elliptic_curve_is_valid() noexcept {
   elliptic_curve_is_valid = (4*a*a*a + 27*b*b) % modulo != 0;
   return elliptic_curve_is_valid;
 };
@@ -340,7 +340,7 @@ bool Elliptic::check_modulo_is_prime() {
 
 
 
-constexpr size_t Elliptic::calculate_lambda(const Elliptic& second){
+size_t Elliptic::calculate_lambda(const Elliptic& second){
   size_t lambda_top = 0;
   size_t lambda_bot = 0;
 
@@ -363,7 +363,7 @@ constexpr size_t Elliptic::calculate_lambda(const Elliptic& second){
 
 
 
-constexpr size_t Elliptic::calculate_inv(size_t val){
+size_t Elliptic::calculate_inv(size_t val){
   size_t lam_bot_inv = 1;
   for(int i = 0; i < modulo - 2; i ++){
     lam_bot_inv *= val;
