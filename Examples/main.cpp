@@ -8,6 +8,7 @@
 #include "EllipticExample.h"
 #include "DesExample.h"
 #include "AesExample.h"
+#include "DataTransferExample.h"
 
 
 
@@ -15,6 +16,7 @@ int main(){
   EllipticExample();
   DesExample();
   AesExample();
+  DataTransferExample();
   
   return 0;
 };
