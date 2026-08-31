@@ -104,7 +104,13 @@ target_link_libraries(A PRIVATE Crypt::Crypt)
 - [Elliptic Curves](docs/Elliptic.md)
 - [Des](docs/Des.md)
 - [Aes](docs/Aes.md)
+- [Sha](docs/Sha.md)
 
 
 
 ## TODO:
+- [ ] RSA
+- [ ] ELGamal
+- [ ] EC-ELGamal
+- [ ] Deffie-Hellman
+- [x] SHA256

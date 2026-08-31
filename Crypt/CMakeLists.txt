@@ -13,12 +13,14 @@ set(src
   Elliptic/Elliptic.cpp
   Des/Des.cpp
   Aes/Aes.cpp
+  Sha/Sha.cpp
 )
 
 set(headers
   Elliptic/Elliptic.h
   Des/Des.h
   Aes/Aes.h
+  Sha/Sha.h
   .
 )
 

@@ -14,6 +14,7 @@ set(tests_src
   Unit/Elliptic.cpp
   Unit/Des.cpp
   Unit/Aes.cpp
+  Unit/Sha.cpp
 )
 
 add_executable(unit_tests ${tests_src})
