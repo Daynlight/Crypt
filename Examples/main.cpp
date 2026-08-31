@@ -8,8 +8,10 @@
 #include "EllipticExample.h"
 #include "DesExample.h"
 #include "AesExample.h"
-#include "DataTransferExample.h"
 #include "ShaExample.h"
+#include "RsaExample.h"
+#include "ElGamalExample.h"
+#include "DataTransferExample.h"
 
 
 
@@ -18,6 +20,8 @@ int main(){
   DesExample();
   AesExample();
   ShaExample();
+  RsaExample();
+  ELGamalExample();
   DataTransferExample();
 
   return 0;

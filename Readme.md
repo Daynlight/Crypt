@@ -105,12 +105,16 @@ target_link_libraries(A PRIVATE Crypt::Crypt)
 - [Des](docs/Des.md)
 - [Aes](docs/Aes.md)
 - [Sha](docs/Sha.md)
+- [Rsa](docs/Rsa.md)
+- [ElGamal](docs/ElGamal.md)
 
 
 
 ## TODO:
-- [ ] RSA
-- [ ] ELGamal
+- [x] RSA
+- [x] SHA256
+- [x] ELGamal
 - [ ] EC-ELGamal
 - [ ] Deffie-Hellman
-- [x] SHA256
+- [ ] BigInt
+- [ ] BigIntModulo
