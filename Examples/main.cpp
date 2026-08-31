@@ -7,11 +7,14 @@
 
 #include "EllipticExample.h"
 #include "DesExample.h"
+#include "AesExample.h"
+
 
 
 int main(){
   EllipticExample();
   DesExample();
+  AesExample();
   
   return 0;
 };

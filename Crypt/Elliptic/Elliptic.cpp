@@ -110,6 +110,8 @@ size_t Crypt::Elliptic::getModulo() const noexcept {
 void Crypt::Elliptic::setModulo(size_t modulo) noexcept {
   this->modulo = modulo;
   check_modulo_is_prime();
+  check_elliptic_curve_is_valid();
+  check_point_is_valid();
 };
 
 
@@ -124,6 +126,7 @@ void Crypt::Elliptic::setEllipticParams(size_t a, size_t b) noexcept {
   this->a = a;
   this->b = b;
   check_elliptic_curve_is_valid();
+  check_point_is_valid();
 };
 
 
@@ -132,6 +135,7 @@ void Crypt::Elliptic::setEllipticParams(std::array<size_t, 2> params) noexcept {
   this->a = params[0];
   this->b = params[1];
   check_elliptic_curve_is_valid();
+  check_point_is_valid();
 };
 
 
@@ -292,6 +296,10 @@ bool Crypt::Elliptic::operator!=(const Elliptic& second) const noexcept {
 //// ====== Helpers ====== ////
 //// ===================== ////
 bool Crypt::Elliptic::check_point_is_valid() noexcept {
+    if(modulo <= 0) {
+    point_is_valid = false;
+    return point_is_valid;
+  };
   point_is_valid = ((y*y) % modulo) == (x*x*x + a*x + b) % modulo;
   return point_is_valid;
 };
@@ -299,6 +307,10 @@ bool Crypt::Elliptic::check_point_is_valid() noexcept {
 
 
 bool Crypt::Elliptic::check_elliptic_curve_is_valid() noexcept {
+  if(modulo <= 0) {
+    elliptic_curve_is_valid = false;
+    return elliptic_curve_is_valid;
+  };
   elliptic_curve_is_valid = (4*a*a*a + 27*b*b) % modulo != 0;
   return elliptic_curve_is_valid;
 };

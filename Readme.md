@@ -103,6 +103,7 @@ target_link_libraries(A PRIVATE Crypt::Crypt)
 ## Supported Structures and Algorithms
 - [Elliptic Curves](docs/Elliptic.md)
 - [Des](docs/Des.md)
+- [Aes](docs/Aes.md)
 
 
 

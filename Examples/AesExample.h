@@ -10,24 +10,24 @@
 
 #include <string>
 
-#include <Crypt/Des/Des.h>
+#include <Crypt/Aes/Aes.h>
 
 
 
-void DesGettersSetters(){
+void AesGettersSetters(){
   fmt::println("");
-  fmt::println(fg(fmt::color::aqua), "Des Setters/Getters");
+  fmt::println(fg(fmt::color::aqua), "Aes Setters/Getters");
   fmt::println("");
   
   fmt::println(fg(fmt::color::aqua), "Message");
   {
-    Crypt::Des des;
+    Crypt::Aes aes;
     std::string message = "Hello World Message";
-    des.setMessage(message.data(), message.size());
+    aes.setMessage(message.data(), message.size());
     
     fmt::println(fg(fmt::color::yellow), "Original Text: {}", message);
     
-    std::pair<const void*, size_t> get_message = des.getMessage();
+    std::pair<const void*, size_t> get_message = aes.getMessage();
     std::string recovered_message(static_cast<const char*>(get_message.first), get_message.second);
 
     if(recovered_message == message)
@@ -38,13 +38,13 @@ void DesGettersSetters(){
 
   fmt::println(fg(fmt::color::aqua), "Cipher");
   {
-    Crypt::Des des;
+    Crypt::Aes aes;
     std::string cipher = "Hello World Cipher";
-    des.setCipher(cipher.data(), cipher.size());
+    aes.setCipher(cipher.data(), cipher.size());
     
     fmt::println(fg(fmt::color::yellow), "Original Text: {}", cipher);
     
-    std::pair<const void*, size_t> get_cipher = des.getCipher();
+    std::pair<const void*, size_t> get_cipher = aes.getCipher();
     std::string recovered_cipher(static_cast<const char*>(get_cipher.first), get_cipher.second);
 
     if(recovered_cipher == cipher)
@@ -55,13 +55,13 @@ void DesGettersSetters(){
 
   fmt::println(fg(fmt::color::aqua), "Key");
   {
-    Crypt::Des des;
+    Crypt::Aes aes;
     std::string key = "Hello World key";
-    des.setKey(key.data(), key.size());
+    aes.setKey(key.data(), key.size());
     
     fmt::println(fg(fmt::color::yellow), "Original Text: {}", key);
     
-    std::pair<const void*, size_t> get_key = des.getKey();
+    std::pair<const void*, size_t> get_key = aes.getKey();
     std::string recovered_key(static_cast<const char*>(get_key.first), get_key.second);
 
     if(recovered_key == key)
@@ -73,9 +73,9 @@ void DesGettersSetters(){
 
 
 
-void DesCryptEncrypt(){
+void AesCryptEncrypt(){
   fmt::println("");
-  fmt::println(fg(fmt::color::aqua), "Des Crypt/Encrypt");
+  fmt::println(fg(fmt::color::aqua), "Aes Crypt/Encrypt");
   fmt::println("");
   
   {
@@ -83,21 +83,21 @@ void DesCryptEncrypt(){
     std::string key = "VeryLongAndHiddenPassword";
     
     
-    Crypt::Des des;
-    des.setMessage(message.data(), message.size());
-    des.setKey(key.data(), key.size());
+    Crypt::Aes aes;
+    aes.setMessage(message.data(), message.size());
+    aes.setKey(key.data(), key.size());
         
-    des.crypt();
-    std::pair<const void*, size_t> get_cipher = des.getCipher();
+    aes.crypt();
+    std::pair<const void*, size_t> get_cipher = aes.getCipher();
     std::string cipher(static_cast<const char*>(get_cipher.first), get_cipher.second);
     
 
-    Crypt::Des des2;
-    des2.setCipher(cipher.data(), cipher.size());
-    des2.setKey(key.data(), key.size());
+    Crypt::Aes aes2;
+    aes2.setCipher(cipher.data(), cipher.size());
+    aes2.setKey(key.data(), key.size());
     
-    des2.encrypt();
-    std::pair<const void*, size_t> get_message = des2.getMessage();
+    aes2.encrypt();
+    std::pair<const void*, size_t> get_message = aes2.getMessage();
     std::string recovered_message(static_cast<const char*>(get_message.first), get_message.second);
     
 
@@ -128,14 +128,14 @@ void DesCryptEncrypt(){
 
 
 
-void DesExample(){
+void AesExample(){
   fmt::println("");
   fmt::println("");
   fmt::println(fg(fmt::color::blue) | fmt::emphasis::bold, "================");
-  fmt::println(fg(fmt::color::blue) | fmt::emphasis::bold, "= Des Examples =");
+  fmt::println(fg(fmt::color::blue) | fmt::emphasis::bold, "= Aes Examples =");
   fmt::println(fg(fmt::color::blue) | fmt::emphasis::bold, "================");
   fmt::println("");
 
-  DesGettersSetters();
-  DesCryptEncrypt();
+  AesGettersSetters();
+  AesCryptEncrypt();
 };
