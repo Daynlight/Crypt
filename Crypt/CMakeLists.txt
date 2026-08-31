@@ -12,11 +12,13 @@ project(Crypt LANGUAGES CXX)
 set(src
   Elliptic/Elliptic.cpp
   Des/Des.cpp
+  Aes/Aes.cpp
 )
 
 set(headers
   Elliptic/Elliptic.h
   Des/Des.h
+  Aes/Aes.h
   .
 )
 
