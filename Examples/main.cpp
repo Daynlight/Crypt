@@ -10,17 +10,19 @@
 #include "AesExample.h"
 #include "ShaExample.h"
 #include "RsaExample.h"
+#include "ElGamalExample.h"
 #include "DataTransferExample.h"
 
 
 
 int main(){
-  // EllipticExample();
-  // DesExample();
-  // AesExample();
-  // ShaExample();
+  EllipticExample();
+  DesExample();
+  AesExample();
+  ShaExample();
   RsaExample();
-  // DataTransferExample();
+  ELGamalExample();
+  DataTransferExample();
 
   return 0;
 };

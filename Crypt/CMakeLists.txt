@@ -15,6 +15,7 @@ set(src
   Aes/Aes.cpp
   Sha/Sha.cpp
   Rsa/Rsa.cpp
+  ElGamal/ELGamal.cpp
 )
 
 set(headers
@@ -23,6 +24,7 @@ set(headers
   Aes/Aes.h
   Sha/Sha.h
   Rsa/Rsa.h
+  ElGamal/ELGamal.h
   .
 )
 
